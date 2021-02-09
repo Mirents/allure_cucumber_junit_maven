@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     
     <!-- Название проекта -->
-    <name>seleniumtest_sber</name>
+    <name>seleniumtest_dns_shop</name>
     <groupId>io.github.mirents</groupId>
-    <artifactId>seleniumtest_sber</artifactId>
+    <artifactId>seleniumtest_dns_shop</artifactId>
     <!-- Версия -->
     <version>1.0-SNAPSHOT</version>
     

@@ -1,37 +1,41 @@
 package ru.dns_shop.test.base;
 
-import java.util.concurrent.TimeUnit;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.dns_shop.pages.managers.PageManager;
 import static ru.dns_shop.pages.managers.DriverManager.getDriver;
-import static ru.dns_shop.pages.managers.DriverManager.quitDriver;
+import ru.dns_shop.pages.managers.*;
+import static ru.dns_shop.pages.utils.ProperitesConstant.APP_URL;
 
 /**
- * Базовый класс, отвечающий за первоначальную настройку тестов
+ * Базовый класс, отвечающий за первоначальную настройку тестов.
  * @author vadim
  */
 public class BaseTest {
     protected PageManager apptest = PageManager.getManager();
-    
-    public WebDriverWait wait;
+    PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     /**
      * Метод первоначальной настройки драйвера и параметров запуска
      */
-    @BeforeEach
-    public void beforeAll() {
-        
+    @BeforeAll
+    public static void beforeAll() {
+        InitManager.initFramework();
     }
 
     /**
      * Метод завершения работы
      */
-    @AfterEach
-    public void afterAll() {
-        quitDriver();
-    }    
+    @AfterAll
+    public static void afterAll() {
+        InitManager.quitFramework();
+    }
+    
+    /**
+     * Открытие главной страница сайта перед каждым началом теста.
+     */
+    @BeforeEach
+    public void beforeEach() {
+        getDriver().get(propertiesManager.getProperty(APP_URL));
+    }
 }

@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Properties;
 
+/**
+ * Класс работы со свойствами проета - загрузка из файла и их установка
+ * @author vadim
+ */
 public class PropertiesManager {
     private final Properties properties = new Properties();
-    
     private static PropertiesManager INSTANCE = null;
     
     private PropertiesManager() {
@@ -26,7 +29,6 @@ public class PropertiesManager {
      * По умолчанию загружается файл "applications.properties", но если
      * в папке resources расположен файл с другим именем и его имя передано
      * системной переменной propFile - тогда будет загружен этот файл
-     * 
      */
     private void loadApplicationProperites() {
         // Посмотреть, чтобы название кастомной системной переменной не
@@ -34,7 +36,7 @@ public class PropertiesManager {
         try {
             properties.load(new FileInputStream(new File(
                     "src/main/resources/" +
-                            System.getProperty("propFile", "applications") +
+                            System.getProperty("propFile", "environment") +
                             ".properties")));
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +44,7 @@ public class PropertiesManager {
     }
     
     /**
-     * Метод загрузки переменной из системных переменых, заданной вручнуу.
+     * Метод загрузки переменной из системных переменых, заданной вручную.
      * Уточнить, каким путем это можно сделать
      */
     private void loadCustomProperites() {
@@ -53,5 +55,13 @@ public class PropertiesManager {
                 properties.setProperty(key.toString(), customUserValue.toString());
         }
         }));
+    }
+    
+    public String getProperty(String key, String defaultValue) {
+        return properties.getProperty(key, defaultValue);
+    }
+    
+    public String getProperty(String key) {
+        return properties.getProperty(key);
     }
 }

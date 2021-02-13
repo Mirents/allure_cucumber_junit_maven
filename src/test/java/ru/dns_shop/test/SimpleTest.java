@@ -1,7 +1,6 @@
 package ru.dns_shop.test;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import ru.dns_shop.test.base.BaseTest;
 
@@ -23,7 +22,7 @@ public class SimpleTest extends BaseTest {
     /**
      * Тест, аналогичный первому, только запуском с тремя наборами параметров
      */
-    @Disabled("Пока находится в разработке")
+    @Disabled("Пока находится в разработке, отключен по ненадобности")
     //@ParameterizedTest
     @CsvSource({
         "Сергеев,Сергей,Сергеевич,SERGEY SERGEEV,"

@@ -20,6 +20,7 @@ public class BaseTest {
      */
     @BeforeAll
     public static void beforeAll() {
+        System.out.println("->BaseTest:beforeAll start InitManager:initFramework");
         InitManager.initFramework();
     }
 
@@ -28,6 +29,7 @@ public class BaseTest {
      */
     @AfterAll
     public static void afterAll() {
+        System.out.println("->BaseTest:beforeAll start InitManager:quitFramework");
         InitManager.quitFramework();
     }
     
@@ -36,6 +38,7 @@ public class BaseTest {
      */
     @BeforeEach
     public void beforeEach() {
+        System.out.println("->BaseTest:beforeEach start getDriver().get(propertiesManager.getProperty(APP_URL))");
         getDriver().get(propertiesManager.getProperty(APP_URL));
     }
 }

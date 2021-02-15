@@ -1,6 +1,5 @@
 package ru.dns_shop.pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.dns_shop.pages.base.BasePage;
@@ -11,23 +10,29 @@ import ru.dns_shop.pages.base.BasePage;
  */
 public class HomePage extends BasePage {
     
-    @FindBy(xpath = "//input[contains(@placeholder, 'DNS')]")
+    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]")
     WebElement inputFind;
     
-    @FindBy(xpath = "//input[contains(@placeholder, 'DNS')]/../div[contains(@class, 'ui-input-search__buttons')]")
+    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]/.."
+            + "//span[contains(@class, '_icon_search ui-input-search__icon_presearch')]")
     WebElement buttonFind;
     
-    @FindBy(xpath = "//div[contains(@class, 'homepage-actual-offers-main__title')]")
-    WebElement actuals;
-
-    
-    public HomePage inputText() {
-        inputFind.sendKeys("playstation\n");
+    public HomePage inputText(String text) {
+        try {
+            inputFind.sendKeys(text);
+        } catch (Exception e) {
+        System.out.println("Ошибка поле ввода");}
+        
         return apptest.getHomePage();
     }
     
     public SearchResultPage clickButtonFind() {
-        buttonFind.click();
+        try {
+            buttonFind.click();
+        } catch (Exception e) {
+            System.out.println("Ошибка кнопка поиска");
+        }
+        
         return apptest.getSearchResultPage();
     }
 }

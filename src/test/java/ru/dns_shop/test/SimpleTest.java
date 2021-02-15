@@ -15,10 +15,12 @@ public class SimpleTest extends BaseTest {
     @Test
     public void SimpleGetYouthCardTest() {
         apptest
-                .getHomePage()
-                .getActualsText();
+                .getHomePage().inputText("playstation")
+                .clickButtonFind()
+                .clickToProduct("Игровая консоль PlayStation 4")
+                .clickToWarnary();
     }
-    
+
     /**
      * Тест, аналогичный первому, только запуском с тремя наборами параметров
      */

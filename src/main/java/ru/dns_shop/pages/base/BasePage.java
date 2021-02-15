@@ -22,6 +22,7 @@ public class BasePage {
      * Метод первоначальной настройки драйвера и параметров запуска
      */
     public BasePage() {
+        System.out.println("->BasePage start PageFactory:initElements");
         PageFactory.initElements(getDriver(), this);
     }
     

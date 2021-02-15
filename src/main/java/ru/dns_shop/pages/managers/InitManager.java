@@ -1,8 +1,7 @@
 package ru.dns_shop.pages.managers;
 
 import java.util.concurrent.TimeUnit;
-import static ru.dns_shop.pages.managers.DriverManager.getDriver;
-import static ru.dns_shop.pages.managers.DriverManager.quitDriver;
+import static ru.dns_shop.pages.managers.DriverManager.*;
 import static ru.dns_shop.pages.utils.ProperitesConstant.*;
 
 /**
@@ -14,12 +13,11 @@ public class InitManager {
             PropertiesManager.getPropertiesManager();
     
     public static void initFramework() {
-        if(propertiesManager.getProperty(CHROME_MAXIMIZE_WINDOW).equals("on")) {
-            getDriver().manage().window().maximize();
-        }
+        System.out.println("->InitManager:initFramework start getDriver().manage().timeouts().implicitlyWait");
         getDriver().manage().timeouts().implicitlyWait(
                 Integer.parseInt(propertiesManager.getProperty(IMPLICITY_WAIT)),
                 TimeUnit.SECONDS);
+        System.out.println("->InitManager:initFramework start getDriver().manage().timeouts().pageLoadTimeout");
         getDriver().manage().timeouts().pageLoadTimeout(
                 Integer.parseInt(propertiesManager.getProperty(PAGE_LOAD_TIMEOUT)),
                 TimeUnit.SECONDS);

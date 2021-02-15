@@ -5,6 +5,7 @@ import org.apache.commons.exec.OS;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static ru.dns_shop.pages.utils.ProperitesConstant.*;
 
@@ -18,6 +19,7 @@ public class DriverManager {
     PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     private DriverManager() {
+        System.out.println("->DriverManager start initDriver");
         initDriver();
     }
     
@@ -26,6 +28,7 @@ public class DriverManager {
      * @return WebDriver
      */
     public static WebDriver getDriver() {
+        System.out.println("->DriverManager:getDriver");
         if(driver == null) {
             INSTANCE = new DriverManager();
         }
@@ -33,6 +36,7 @@ public class DriverManager {
     }
     
     public static void quitDriver() {
+        System.out.println("->DriverManager:quitDriver");
         if(driver != null) {
             driver.quit();
             driver = null;
@@ -41,6 +45,7 @@ public class DriverManager {
     }
     
     private void initDriver() {
+        System.out.println("->DriverManager:initDriver");
         if(OS.isFamilyWindows()) {
             initDriverAnyOsFamily(PATH_DRIVER_CHROME_WINDOWS);
         } else if(OS.isFamilyMac()) {
@@ -51,6 +56,7 @@ public class DriverManager {
     }
     
     private void initDriverAnyOsFamily(String chrome) {
+        System.out.println("->DriverManager:initDriverAnyOsFamily");
         switch(propertiesManager.getProperty(TYPE_BROWSER)) {
             case "firefox":
                 /*System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -58,12 +64,28 @@ public class DriverManager {
                 break;
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", propertiesManager.getProperty(chrome));
-                driver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+                if(propertiesManager.getProperty(CHROME_MAXIMIZE_WINDOW).equals("on")) {
+                    options.addArguments("start-maximized");
+                }
+                if(propertiesManager.getProperty(CHROME_DISABLE_NOTIFICATIONS).equals("on")) {
+                    options.addArguments("disable-notifications");
+                }
+                if(propertiesManager.getProperty(CHROME_DISABLE_INFOBARS).equals("on")) {
+                    options.addArguments("disable-infobars");
+                }
+                if(propertiesManager.getProperty(CHROME_DISABLE_POPUP_BLOCKING).equals("on")) {
+                    options.addArguments("disable-popup-blocking");
+                }
+                if(propertiesManager.getProperty(CHROME_INCOGNITO).equals("on")) {
+                    options.addArguments("incognito");
+                }
+                driver = new ChromeDriver(options);
                 driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
                 driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
                 break;
             default:
-                Assertions.fail("типа браузера '" + propertiesManager.getProperty(TYPE_BROWSER)
+                Assertions.fail("Типа браузера '" + propertiesManager.getProperty(TYPE_BROWSER)
                 + "' не существует в фреймворке");
         }
     }

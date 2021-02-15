@@ -13,11 +13,13 @@ public class PropertiesManager {
     private static PropertiesManager INSTANCE = null;
     
     private PropertiesManager() {
+        System.out.println("->PropertiesManager");
         loadApplicationProperites();
         loadCustomProperites();
     }
     
     public static PropertiesManager getPropertiesManager() {
+        System.out.println("->PropertiesManager:getPropertiesManager");
         if(INSTANCE == null) {
             INSTANCE = new PropertiesManager();
         }
@@ -60,7 +62,7 @@ public class PropertiesManager {
     public String getProperty(String key, String defaultValue) {
         return properties.getProperty(key, defaultValue);
     }
-    
+
     public String getProperty(String key) {
         return properties.getProperty(key);
     }

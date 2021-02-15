@@ -24,6 +24,10 @@ public class ProperitesConstant {
     
     public static final String PAGE_LOAD_TIMEOUT = "page.load.timeout";
     
+    public static final String WAIT_TIMEOUTINSECONDS = "wait.timeoutinseconds";
+    
+    public static final String WAIT_SLEEPINMILLIS = "wait.sleepinmillis";
+    
     public static final String PATH_DRIVER_CHROME_WINDOWS = "path.driver.chrome.windows";
     
     public static final String PATH_DRIVER_CHROME_UNIX = "path.driver.chrome.unix";

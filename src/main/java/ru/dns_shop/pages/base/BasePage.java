@@ -1,10 +1,12 @@
 package ru.dns_shop.pages.base;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import ru.dns_shop.pages.TopMenu;
 import ru.dns_shop.pages.managers.PageManager;
 import static ru.dns_shop.pages.managers.DriverManager.getDriver;
 import ru.dns_shop.pages.managers.PropertiesManager;
@@ -16,13 +18,13 @@ import static ru.dns_shop.pages.utils.ProperitesConstant.*;
  */
 public class BasePage {
     protected PageManager apptest = PageManager.getManager();
-    PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
-        
+    protected PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
+    //protected static HashMap<String, Integer> shoppingList = new HashMap<>();
+    protected static long timeOperation;
     /**
      * Метод первоначальной настройки драйвера и параметров запуска
      */
     public BasePage() {
-        System.out.println("->BasePage start PageFactory:initElements");
         PageFactory.initElements(getDriver(), this);
     }
     
@@ -56,5 +58,17 @@ public class BasePage {
             propertiesManager.getProperty(IMPLICITY_WAIT)), TimeUnit.SECONDS);
         }
         return flag;
+    }
+    
+    public TopMenu getTopMenu() {
+        return apptest.getTopMenu();
+    }
+    
+    public static void print(String text, String r) {
+        String mask = "'%s' - '%s' - '%s'";
+        long thisTime = System.currentTimeMillis();
+        String textPrint = String.format(mask, r, text, ((thisTime-timeOperation) + "ms"));
+        timeOperation = thisTime;
+        System.out.println(textPrint);
     }
 }

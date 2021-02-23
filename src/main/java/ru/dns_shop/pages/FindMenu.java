@@ -8,7 +8,7 @@ import ru.dns_shop.pages.base.BasePage;
  * Класс главной страницы сайта
  * @author vadim
  */
-public class HomePage extends BasePage {
+public class FindMenu extends BasePage {
     
     @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]")
     WebElement inputFind;
@@ -17,20 +17,22 @@ public class HomePage extends BasePage {
             + "//span[contains(@class, '_icon_search ui-input-search__icon_presearch')]")
     WebElement buttonFind;
     
-    public HomePage inputText(String text) {
+    public FindMenu inputTextToFind(String text) {
+        print("Ввод текста в поле поиска: " + text, "+++");
         try {
             inputFind.sendKeys(text);
         } catch (Exception e) {
-        System.out.println("Ошибка поле ввода");}
+        System.out.println("Ошибка поля ввода");}
         
-        return apptest.getHomePage();
+        return apptest.getFindMenu();
     }
     
     public SearchResultPage clickButtonFind() {
+        print("Нажатие на кнопку поиска", "+++");
         try {
             buttonFind.click();
         } catch (Exception e) {
-            System.out.println("Ошибка кнопка поиска");
+            System.out.println("Ошибка кнопки поиска");
         }
         
         return apptest.getSearchResultPage();

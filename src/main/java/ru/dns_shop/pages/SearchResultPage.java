@@ -15,25 +15,45 @@ import ru.dns_shop.pages.managers.*;
  */
 public class SearchResultPage extends BasePage {
     
-    @FindBy(xpath = "//div[contains(@data-id, 'catalog-item')]")
+    @FindBy(xpath = "//div[contains(@data-id, 'product') and contains(@class, 'widget')]")
     private List<WebElement> productList;
     
     public ProductPage clickToProduct(String name) {
+        print("Нажатие на продукт в результатах поиска: " + name, "+++");
         try {
-        productList.forEach(e -> {
-            WebElement a = getNameInProductList(e);
-            if(a.getText().trim().contains(name)) {
-                WaitManager.getWait()
-                        .until(ExpectedConditions.elementToBeClickable(a));
-                a.click();
-            }
-        });
-       } catch(StaleElementReferenceException ignore) {}
+            productList.forEach(e -> {
+                WebElement a = getNameInProductList(e);
+                if(a.getText().trim().contains(name)) {
+                    WaitManager.getWait()
+                            .until(ExpectedConditions.elementToBeClickable(a));
+                    a.click();
+                }
+            });
+        } catch(StaleElementReferenceException ignore) {}
+        finally {
+            productList.clear();
+        }
         
         return apptest.getProductPage();
     }
     
     private WebElement getNameInProductList(WebElement elem) {
-        return elem.findElement(By.xpath(".//a[contains(@data-role, 'clamped-link')]"));
+        return elem.findElement(By.xpath(".//a[contains(@class, 'catalog-product__name')]"));
+    }
+    
+    /**
+     * Попытка вернуть страницу товара, если в результатах поиска только
+     * один товар и сразу показана его страница.
+     * @param text
+     * @return 
+     */
+    public ProductPage checkToProductPage(String text) {
+        if(productList.isEmpty()) {
+            print("Переход к странице товара: " + text, "+++");
+            return apptest.getProductPage();
+        } else {
+            print("Переход к результатам поиска: " + text, "+++");
+            return apptest.getSearchResultPage().clickToProduct(text);
+        }
     }
 }

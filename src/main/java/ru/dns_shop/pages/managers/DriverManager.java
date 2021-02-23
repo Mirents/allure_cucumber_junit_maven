@@ -19,7 +19,6 @@ public class DriverManager {
     PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     private DriverManager() {
-        System.out.println("->DriverManager start initDriver");
         initDriver();
     }
     
@@ -28,7 +27,6 @@ public class DriverManager {
      * @return WebDriver
      */
     public static WebDriver getDriver() {
-        System.out.println("->DriverManager:getDriver");
         if(driver == null) {
             INSTANCE = new DriverManager();
         }
@@ -36,7 +34,6 @@ public class DriverManager {
     }
     
     public static void quitDriver() {
-        System.out.println("->DriverManager:quitDriver");
         if(driver != null) {
             driver.quit();
             driver = null;
@@ -45,7 +42,6 @@ public class DriverManager {
     }
     
     private void initDriver() {
-        System.out.println("->DriverManager:initDriver");
         if(OS.isFamilyWindows()) {
             initDriverAnyOsFamily(PATH_DRIVER_CHROME_WINDOWS);
         } else if(OS.isFamilyMac()) {
@@ -56,7 +52,6 @@ public class DriverManager {
     }
     
     private void initDriverAnyOsFamily(String chrome) {
-        System.out.println("->DriverManager:initDriverAnyOsFamily");
         switch(propertiesManager.getProperty(TYPE_BROWSER)) {
             case "firefox":
                 /*System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");

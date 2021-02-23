@@ -14,8 +14,6 @@ public class WaitManager {
     PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     private WaitManager() {
-        System.out.println("->WaitManager");
-        
         long sleepInMillis = Integer.parseInt(propertiesManager.getProperty(WAIT_SLEEPINMILLIS));
         if(sleepInMillis == 0) {
             sleepInMillis = 1000;
@@ -29,7 +27,6 @@ public class WaitManager {
     }
     
     public static WebDriverWait getWait() {
-        System.out.println("->WaitManager:getWait");
         if(wait == null) {
             INSTANCE = new WaitManager();
         }

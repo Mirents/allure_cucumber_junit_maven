@@ -13,11 +13,9 @@ public class InitManager {
             PropertiesManager.getPropertiesManager();
     
     public static void initFramework() {
-        System.out.println("->InitManager:initFramework start getDriver().manage().timeouts().implicitlyWait");
         getDriver().manage().timeouts().implicitlyWait(
                 Integer.parseInt(propertiesManager.getProperty(IMPLICITY_WAIT)),
                 TimeUnit.SECONDS);
-        System.out.println("->InitManager:initFramework start getDriver().manage().timeouts().pageLoadTimeout");
         getDriver().manage().timeouts().pageLoadTimeout(
                 Integer.parseInt(propertiesManager.getProperty(PAGE_LOAD_TIMEOUT)),
                 TimeUnit.SECONDS);

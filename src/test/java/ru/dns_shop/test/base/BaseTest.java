@@ -1,6 +1,7 @@
 package ru.dns_shop.test.base;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import static ru.dns_shop.pages.managers.DriverManager.getDriver;
@@ -18,27 +19,35 @@ public class BaseTest {
     /**
      * Метод первоначальной настройки драйвера и параметров запуска
      */
-    @BeforeAll
+    /*@BeforeAll
     public static void beforeAll() {
-        System.out.println("->BaseTest:beforeAll start InitManager:initFramework");
         InitManager.initFramework();
-    }
+    }*/
 
     /**
      * Метод завершения работы
      */
-    @AfterAll
+    /*@AfterAll
     public static void afterAll() {
-        System.out.println("->BaseTest:beforeAll start InitManager:quitFramework");
         InitManager.quitFramework();
-    }
+    }*/
     
     /**
      * Открытие главной страница сайта перед каждым началом теста.
      */
+    /*@BeforeEach
+    public void beforeEach() {
+        getDriver().get(propertiesManager.getProperty(APP_URL));
+    }*/
+    
     @BeforeEach
     public void beforeEach() {
-        System.out.println("->BaseTest:beforeEach start getDriver().get(propertiesManager.getProperty(APP_URL))");
+        InitManager.initFramework();
         getDriver().get(propertiesManager.getProperty(APP_URL));
+    }
+    
+    @AfterEach
+    public void afterEach() {
+       InitManager.quitFramework();
     }
 }

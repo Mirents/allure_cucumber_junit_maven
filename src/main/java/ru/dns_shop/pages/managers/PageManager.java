@@ -1,8 +1,10 @@
 package ru.dns_shop.pages.managers;
 
-import ru.dns_shop.pages.HomePage;
+import ru.dns_shop.pages.CartPage;
+import ru.dns_shop.pages.FindMenu;
 import ru.dns_shop.pages.ProductPage;
 import ru.dns_shop.pages.SearchResultPage;
+import ru.dns_shop.pages.TopMenu;
 
 /**
  * Класс работы со страницами проекта. Каждая создается в еденичном экземпляре.
@@ -13,31 +15,34 @@ public class PageManager {
     /*
     Список страниц тестируемого сайта
     */
-    private HomePage homePage;
+    private TopMenu topMenu;
+    private FindMenu findMenu;
     private SearchResultPage searchResultPage;
     private ProductPage productPage;
-    
-    /*private PageManager() {
-    }*/
-    
+    private CartPage cardPage;
+     
     public static PageManager getManager() {
-        System.out.println("->PageManager:getManager");
         if(pageManager == null) {
             pageManager = new PageManager();
         }
         return pageManager;
     }
     
-    public HomePage getHomePage() {
-        System.out.println("->PageManager:getHomePage");
-        if(homePage == null) {
-            homePage = new HomePage();
+    public TopMenu getTopMenu() {
+        if(topMenu == null) {
+            topMenu = new TopMenu();
         }
-        return homePage;
+        return topMenu;
+    }
+    
+    public FindMenu getFindMenu() {
+        if(findMenu == null) {
+            findMenu = new FindMenu();
+        }
+        return findMenu;
     }
     
     public SearchResultPage getSearchResultPage() {
-        System.out.println("->PageManager:getSearchResultPage");
         if(searchResultPage == null) {
             searchResultPage = new SearchResultPage();
         }
@@ -45,10 +50,16 @@ public class PageManager {
     }
     
     public ProductPage getProductPage() {
-        System.out.println("->PageManager:getProductPage");
         if(productPage == null) {
             productPage = new ProductPage();
         }
         return productPage;
+    }
+    
+    public CartPage getCartPage() {
+        if(cardPage == null) {
+            cardPage = new CartPage();
+        }
+        return cardPage;
     }
 }

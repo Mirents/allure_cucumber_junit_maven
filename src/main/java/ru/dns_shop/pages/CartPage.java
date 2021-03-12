@@ -46,7 +46,7 @@ public class CartPage extends BasePage {
                         } catch(NumberFormatException ignore) {
                             war = 0;
                         }
-                        print((warranty.geWarranty() + " | " +  war), "))))))))))))))");
+                        print((warranty.geWarranty() + " | " +  war), "Проверка гарантии");
                         Assertions.assertEquals(warranty.geWarranty(), war);
                     }
                 });

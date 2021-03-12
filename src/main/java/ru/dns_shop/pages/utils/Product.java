@@ -16,9 +16,9 @@ public class Product {
     
     private static List<Product> productList = new ArrayList<>();
     
-    /*public static List<Product> getProductList() {
+    public static List<Product> getProductList() {
         return productList;
-    }*/
+    }
 
     /*public static Product getProductByName(String name) {
         //return productList.stream().filter((p) -> p.getName().equals(name)).count();

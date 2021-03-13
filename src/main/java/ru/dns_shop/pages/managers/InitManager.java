@@ -19,6 +19,9 @@ public class InitManager {
         getDriver().manage().timeouts().pageLoadTimeout(
                 Integer.parseInt(propertiesManager.getProperty(PAGE_LOAD_TIMEOUT)),
                 TimeUnit.SECONDS);
+        if(propertiesManager.getProperty(MAXIMIZE_WINDOW).equals("yes"))
+            getDriver().manage().window().maximize();
+        getDriver().get(propertiesManager.getProperty(APP_URL));
     }
     
     public static void quitFramework() {

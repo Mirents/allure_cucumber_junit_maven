@@ -23,16 +23,16 @@ public class PropertiesManager {
         }
         return INSTANCE;
     }
-    
+
     /**
      * Метод загрузки параметров работы тестов
      * По умолчанию загружается файл "applications.properties", но если
      * в папке resources расположен файл с другим именем и его имя передано
      * системной переменной propFile - тогда будет загружен этот файл
+     * propFile - системная переменная для данного фреймворка и она не должна
+     * совпадать по названию ни с какой системной переменной используемой ОС
      */
     private void loadApplicationProperites() {
-        // Посмотреть, чтобы название кастомной системной переменной не
-        // совпадало с реальными переменными всех ОС
         try {
             properties.load(new FileInputStream(new File(
                     "src/main/resources/" +

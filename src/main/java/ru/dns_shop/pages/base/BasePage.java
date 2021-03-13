@@ -1,6 +1,5 @@
 package ru.dns_shop.pages.base;
 
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -11,6 +10,7 @@ import ru.dns_shop.pages.managers.PageManager;
 import static ru.dns_shop.pages.managers.DriverManager.getDriver;
 import ru.dns_shop.pages.managers.PropertiesManager;
 import static ru.dns_shop.pages.utils.ProperitesConstant.*;
+import ru.dns_shop.pages.utils.Screenshoter;
 
 /**
  * Базовый класс для страниц фреймворка.
@@ -19,13 +19,14 @@ import static ru.dns_shop.pages.utils.ProperitesConstant.*;
 public class BasePage {
     protected PageManager apptest = PageManager.getManager();
     protected PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
-    //protected static HashMap<String, Integer> shoppingList = new HashMap<>();
+    protected Screenshoter scr = new Screenshoter();
     protected static long timeOperation;
     /**
      * Метод первоначальной настройки драйвера и параметров запуска
      */
     public BasePage() {
         PageFactory.initElements(getDriver(), this);
+        initTime();
     }
     
     public void fillInputField(WebElement element, String value) {
@@ -59,8 +60,10 @@ public class BasePage {
         }
         return flag;
     }
-    
+
+    // Метод перехода к элементам главного меню для доступности в любой части страницы
     public TopMenu getTopMenu() {
+        //scr.takeScreenshot();
         return apptest.getTopMenu();
     }
     
@@ -70,5 +73,9 @@ public class BasePage {
         String textPrint = String.format(mask, r, text, ((thisTime-timeOperation) + "ms"));
         timeOperation = thisTime;
         System.out.println(textPrint);
+    }
+    
+    private void initTime() {
+        timeOperation = System.currentTimeMillis();
     }
 }

@@ -22,7 +22,7 @@ public class WaitManager {
         if(timeoutInSeconds == 0) {
             timeoutInSeconds = 5;
         }
-        
+
         wait = new WebDriverWait(getDriver(), timeoutInSeconds, sleepInMillis);
     }
     

@@ -2,7 +2,6 @@ package ru.dns_shop.test;
 
 import org.junit.jupiter.api.*;
 import static ru.dns_shop.pages.utils.WarrantyEnum.WARRANTY_ONE_YEAR;
-import static ru.dns_shop.pages.utils.WarrantyEnum.WARRANTY_TWO_YEAR;
 import ru.dns_shop.test.base.BaseTest;
 
 @DisplayName("Simple Test to get Youth Card")

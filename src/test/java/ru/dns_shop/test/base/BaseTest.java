@@ -14,7 +14,7 @@ import static ru.dns_shop.pages.utils.ProperitesConstant.APP_URL;
  */
 public class BaseTest {
     protected PageManager apptest = PageManager.getManager();
-    PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
+    protected PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     /**
      * Метод первоначальной настройки драйвера и параметров запуска
@@ -43,7 +43,6 @@ public class BaseTest {
     @BeforeEach
     public void beforeEach() {
         InitManager.initFramework();
-        getDriver().get(propertiesManager.getProperty(APP_URL));
     }
     
     @AfterEach

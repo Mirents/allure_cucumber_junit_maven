@@ -1,12 +1,8 @@
 package ru.dns_shop.test.base;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import static ru.dns_shop.pages.managers.DriverManager.getDriver;
 import ru.dns_shop.pages.managers.*;
-import static ru.dns_shop.pages.utils.ProperitesConstant.APP_URL;
 
 /**
  * Базовый класс, отвечающий за первоначальную настройку тестов.

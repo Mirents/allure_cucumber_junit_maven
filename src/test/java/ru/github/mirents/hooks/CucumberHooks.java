@@ -2,15 +2,17 @@ package ru.github.mirents.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import ru.dns_shop.pages.managers.InitManager;
 
 public class CucumberHooks {
+    
     @Before
-    public void beforeExample() {
-        System.out.println("Before Test");
+    public void setUp() {
+        InitManager.initFramework();
     }
 
     @After
-    public void afterExample() {
-        System.out.println("After Test");
+    public void tearDown() {
+        InitManager.quitFramework();
     }
 }

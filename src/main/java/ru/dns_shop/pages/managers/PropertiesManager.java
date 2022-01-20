@@ -35,8 +35,8 @@ public class PropertiesManager {
     private void loadApplicationProperites() {
         try {
             properties.load(new FileInputStream(new File(
-                    "src/main/resources/" +
-                            System.getProperty("propFile", "environment") +
+                    "src/test/resources/" +
+                            System.getProperty("propFile", "application") +
                             ".properties")));
         } catch (Exception e) {
             e.printStackTrace();

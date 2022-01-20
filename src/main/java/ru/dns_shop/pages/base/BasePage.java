@@ -74,7 +74,7 @@ public class BasePage {
         timeOperation = thisTime;
         System.out.println(textPrint);
     }
-    
+
     private void initTime() {
         timeOperation = System.currentTimeMillis();
     }

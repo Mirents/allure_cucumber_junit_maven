@@ -38,6 +38,8 @@
         <allure.report.version>2.17.2</allure.report.version>
         <aspectj.version>1.8.10</aspectj.version>
         <cucumber.version>5.5.0</cucumber.version>
+        <log4j.version>2.17.1</log4j.version>
+        <lombok.version>1.18.20</lombok.version>
     </properties>
 
     <!-- Подключаемые зависимости -->
@@ -73,6 +75,31 @@
             <version>${allure.cucumber5.jvm.version}</version>
         </dependency>
         
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+	</dependency>
+        
         <!-- Импорт класса FileUtils -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -103,7 +130,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>CucumberTest.java</include>
+                        <include>RunnerCucumberTest.java</include>
                     </includes>
                     <argLine>
                         -Xmx1024m

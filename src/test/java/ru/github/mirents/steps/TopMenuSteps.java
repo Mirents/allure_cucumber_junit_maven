@@ -4,7 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class CucumberSteps {
+public class TopMenuSteps {
     @Given("first step")
     public void firstStep() {
         System.out.println("First Step");

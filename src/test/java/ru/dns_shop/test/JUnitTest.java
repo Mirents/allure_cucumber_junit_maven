@@ -4,15 +4,8 @@ import org.junit.jupiter.api.*;
 import static ru.dns_shop.pages.utils.WarrantyEnum.WARRANTY_ONE_YEAR;
 import ru.dns_shop.test.base.BaseTest;
 
-@DisplayName("Simple Test to get Youth Card")
 public class JUnitTest extends BaseTest {
 
-    /**
-     * Простой линейный тест для проверки заполнения полей при оформлении
-     * молодежной карты
-     * @author vadim
-     */
-    //@Disabled("Пока находится в разработке, отключен по ненадобности")
     @Test
     public void SimpleGetYouthCardTest() {
         // открыть сайт

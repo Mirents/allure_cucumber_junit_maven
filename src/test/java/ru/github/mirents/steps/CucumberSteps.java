@@ -1,4 +1,4 @@
-package ru.github.steps;
+package ru.github.mirents.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

@@ -1,7 +1,6 @@
-Feature: example feature
+# language: ru
 
   @example
-  Scenario: example scenario
-    Given first step
-    When second step
-    Then third step
+  Функция: Проверка соответствия гарантии
+    Сценарий: Успешная проверка
+    И в верхнем меню пользователь вводит текст "iphone silver gray"

@@ -1,24 +1,14 @@
 package ru.github.mirents.steps;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.ru.И;
 
-public class TopMenuSteps {
-    @Given("first step")
-    public void firstStep() {
-        System.out.println("First Step");
-    }
-
-
-    @When("second step")
-    public void secondStep() {
-        System.out.println("Second Step");
-    }
-
-
-    @Then("third step")
-    public void thirdStep() {
-        System.out.println("Third Step");
+public class TopMenuSteps extends BaseSteps {
+    @И("^в верхнем меню пользователь вводит текст \"([^\"]*)\"$")
+    public void firstStep(String text) {
+        apptest
+                .getTopMenu()
+                .getFindMenu()
+                .inputTextToFind(text)
+                .clickButtonFind();
     }
 }

@@ -1,4 +1,4 @@
-package ru.github.mirents.hooks;
+package ru.github.mirents.steps;
 
 import ru.dns_shop.pages.managers.PageManager;
 import ru.dns_shop.pages.managers.PropertiesManager;

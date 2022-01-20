@@ -10,11 +10,10 @@ import ru.dns_shop.pages.base.BasePage;
  */
 public class FindMenu extends BasePage {
     
-    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]")
+    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту') and not(contains(@id,'null'))]")
     WebElement inputFind;
     
-    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]/.."
-            + "//span[contains(@class, '_icon_search ui-input-search__icon_presearch')]")
+    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]/..//span[contains(@class, '_icon_search ui-input-search__icon_presearch')]")
     WebElement buttonFind;
     
     public FindMenu inputTextToFind(String text) {

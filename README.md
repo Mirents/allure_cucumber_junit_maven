@@ -18,5 +18,5 @@ https://chromedriver.chromium.org/downloads
 https://github.com/mozilla/geckodriver/releases
 
 Команды запуска тестов:
-mvn -Dtest=RunnerCucumber test - для запуска BDD тестов с помощью Cucumber
-mvn -Dtest=JUnitTest test - для запуска тестов через раннер JUnit
+mvn -Dtest=RunnerCucumber test - для запуска BDD тестов с помощью Cucumber (с генерацией Allure-отчета)
+mvn -Dtest=JUnitTest test - для запуска тестов через раннер JUnit (без генерации Allure-отчета)

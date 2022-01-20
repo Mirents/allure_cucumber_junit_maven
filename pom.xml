@@ -130,7 +130,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>RunnerCucumberTest.java</include>
+                        <include>RunnerCucumber.java</include>
                     </includes>
                     <argLine>
                         -Xmx1024m

@@ -7,5 +7,5 @@ import io.cucumber.junit.platform.engine.Cucumber;
  * @author Raven
  */
 @Cucumber
-public class RunnerCucumberTest {
+public class RunnerCucumber {
 }

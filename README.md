@@ -1,4 +1,4 @@
-Framework для автоматизированного тетсрования.
+﻿Framework для автоматизированного тетсрования.
 
 В настоящий момент реализована поддержка:
 - запуск автоматизированных тестов в различных браузерах:
@@ -16,3 +16,7 @@ Framework для автоматизированного тетсрования.
 https://chromedriver.chromium.org/downloads
 Страница с загрузкой Firefox:
 https://github.com/mozilla/geckodriver/releases
+
+Команды запуска тестов:
+mvn -Dtest=RunnerCucumber test - для запуска BDD тестов с помощью Cucumber
+mvn -Dtest=JUnitTest test - для запуска тестов через раннер JUnit

@@ -5,7 +5,7 @@ import static ru.dns_shop.pages.utils.WarrantyEnum.WARRANTY_ONE_YEAR;
 import ru.dns_shop.test.base.BaseTest;
 
 @DisplayName("Simple Test to get Youth Card")
-public class SimpleTest extends BaseTest {
+public class JUnitTest extends BaseTest {
 
     /**
      * Простой линейный тест для проверки заполнения полей при оформлении

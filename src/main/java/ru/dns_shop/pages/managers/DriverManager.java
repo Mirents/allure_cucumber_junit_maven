@@ -23,7 +23,7 @@ import static ru.dns_shop.pages.utils.ProperitesConstant.*;
  */
 public class DriverManager {
     private static WebDriver driver;
-    private static DriverManager INSTANCE = null;
+    private static DriverManager instance = null;
     private final PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     private DriverManager() {
@@ -36,7 +36,7 @@ public class DriverManager {
      */
     public static WebDriver getDriver() {
         if(driver == null) {
-            INSTANCE = new DriverManager();
+            instance = new DriverManager();
         }
         return driver;
     }
@@ -45,7 +45,7 @@ public class DriverManager {
         if(driver != null) {
             driver.quit();
             driver = null;
-            INSTANCE = null;
+            instance = null;
         }
     }
     
@@ -208,26 +208,26 @@ public class DriverManager {
     // TODO переделать инициализацию опций для всех браузеров
     private ChromeOptions getChromeOptions() {
         ChromeOptions result = new ChromeOptions();
-        /*if(propertiesManager.getProperty(CHROME_MAXIMIZE_WINDOW).equals("on")) {
+        /*if(propertiesManager.getProperty(CHROME_MAXIMIZE_WINDOW).equals("yes")) {
             result.addArguments("start-maximized");
         }*/
-        if(propertiesManager.getProperty(CHROME_DISABLE_NOTIFICATIONS).equals("on")) {
+        if(propertiesManager.getProperty(CHROME_DISABLE_NOTIFICATIONS).equals("yes")) {
             result.addArguments("disable-notifications");
         }
-        if(propertiesManager.getProperty(CHROME_DISABLE_INFOBARS).equals("on")) {
+        if(propertiesManager.getProperty(CHROME_DISABLE_INFOBARS).equals("yes")) {
             result.addArguments("disable-infobars");
         }
-        if(propertiesManager.getProperty(CHROME_DISABLE_POPUP_BLOCKING).equals("on")) {
+        if(propertiesManager.getProperty(CHROME_DISABLE_POPUP_BLOCKING).equals("yes")) {
             result.addArguments("disable-popup-blocking");
         }
-        if(propertiesManager.getProperty(CHROME_INCOGNITO).equals("on")) {
+        if(propertiesManager.getProperty(CHROME_INCOGNITO).equals("yes")) {
             result.addArguments("incognito");
         }                
         return result;
     }
     
     private void setManageBeforeStart() {
-        if(propertiesManager.getProperty(DELETE_ALL_COOKIES_BEFORE_START_TESTS).equals("on")) {
+        if(propertiesManager.getProperty(DELETE_ALL_COOKIES_BEFORE_START_TESTS).equals("yes")) {
             driver.manage().deleteAllCookies();
         }
     }

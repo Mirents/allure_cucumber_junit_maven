@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.exec.OS;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ import static ru.dns_shop.pages.utils.ProperitesConstant.*;
  * Класс работы с драйвером Selenium.
  * @author vadim
  */
+@Slf4j
 public class DriverManager {
     private static WebDriver driver;
     private static DriverManager instance = null;
@@ -235,8 +237,7 @@ public class DriverManager {
     private void validateBrowser() {
         /*Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
         String browserName = caps.getBrowserName();
-        String browserVersion = caps.getVersion();
-        System.out.println("************ "+browserName+" "+browserVersion);*/
-        System.out.println("validateBrowser " + ((RemoteWebDriver) driver).getCapabilities().toString());
+        String browserVersion = caps.getVersion();*/
+        log.debug("validateBrowser " + ((RemoteWebDriver) driver).getCapabilities().toString());
     }
 }

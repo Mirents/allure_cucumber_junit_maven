@@ -31,16 +31,6 @@ public class BasePage {
         element.sendKeys(value);
     }
     
-    public void fillFields(String nameElement, String value) {
-        /*switch(nameElement) {
-            case "0" :
-                fillFields("0", value);
-                break;
-            default:
-                System.out.println("");
-        }*/
-    }
-    
     public void scrollToElement() {
         
     }

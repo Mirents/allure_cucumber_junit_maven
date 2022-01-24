@@ -1,5 +1,7 @@
 package ru.dns_shop.pages;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.dns_shop.pages.base.BasePage;
@@ -8,6 +10,7 @@ import ru.dns_shop.pages.base.BasePage;
  * Класс главной страницы сайта
  * @author vadim
  */
+@Slf4j
 public class FindMenu extends BasePage {
     
     @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту') and not(contains(@id,'null'))]")
@@ -17,21 +20,22 @@ public class FindMenu extends BasePage {
     WebElement buttonFind;
     
     public FindMenu inputTextToFind(String text) {
-        print("Ввод текста в поле поиска: " + text, "+++");
+        log.debug("Ввод текста в поле поиска: {}", text);
         try {
             inputFind.sendKeys(text);
         } catch (Exception e) {
-        System.out.println("Ошибка поля ввода");}
+            Assertions.fail("Ошибка поля ввода", e);
+        }
         
         return apptest.getFindMenu();
     }
     
     public SearchResultPage clickButtonFind() {
-        print("Нажатие на кнопку поиска", "+++");
+        log.debug("Нажатие на кнопку поиска");
         try {
             buttonFind.click();
         } catch (Exception e) {
-            System.out.println("Ошибка кнопки поиска");
+            Assertions.fail("Ошибка кнопки поиска", e);
         }
         
         return apptest.getSearchResultPage();

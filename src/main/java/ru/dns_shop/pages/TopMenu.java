@@ -1,5 +1,6 @@
 package ru.dns_shop.pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +13,7 @@ import ru.dns_shop.pages.utils.Product;
  * Класс главной страницы сайта
  * @author vadim
  */
+@Slf4j
 public class TopMenu extends BasePage {
     
     //a[contains(@class, 'cart-link')]
@@ -26,7 +28,7 @@ public class TopMenu extends BasePage {
     }
 
     public TopMenu isEqualShoppingListAndCartPrice() {
-        print("Проверка соотвествия цены в корзине и в списке", "+++");
+        log.debug("Проверка соотвествия цены в корзине и в списке");
         
         float priceShoppingList = Product.getPriceShoppingList();
         // Ожидание изменения цены в верхнем меню у значка "Корзина"
@@ -34,7 +36,7 @@ public class TopMenu extends BasePage {
                     .textToBePresentInElement(cartLinkNumElement, String.valueOf(Product.getProductList().size())));
         int cartPrice = Integer.parseInt(cartLink.getText().replaceAll("[\\D]", ""));
         // Проверка соответстви цены в корзине и в списке товаров
-        print("В корзине " + priceShoppingList + " В списке " + cartPrice, "+++");
+        log.debug("В корзине {}; в списке {}", priceShoppingList, cartPrice);
         Assertions.assertEquals(cartPrice, priceShoppingList);
         
         return apptest.getTopMenu();

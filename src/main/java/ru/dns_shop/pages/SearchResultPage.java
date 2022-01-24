@@ -1,6 +1,7 @@
 package ru.dns_shop.pages;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -13,13 +14,14 @@ import ru.dns_shop.pages.managers.*;
  * Класс страницы с результатами поиска
  * @author vadim
  */
+@Slf4j
 public class SearchResultPage extends BasePage {
     
     @FindBy(xpath = "//div[contains(@data-id, 'product') and contains(@class, 'widget')]")
     private List<WebElement> productList;
     
     public ProductPage clickToProduct(String name) {
-        print("Нажатие на продукт в результатах поиска: " + name, "+++");
+        log.debug("Нажатие на продукт в результатах поиска: {}", name);
         try {
             productList.forEach(e -> {
                 WebElement a = getNameInProductList(e);
@@ -49,10 +51,10 @@ public class SearchResultPage extends BasePage {
      */
     public ProductPage checkToProductPage(String text) {
         if(productList.isEmpty()) {
-            print("Переход к странице товара: " + text, "+++");
+            log.debug("Переход к странице товара: {}" + text);
             return apptest.getProductPage();
         } else {
-            print("Переход к результатам поиска: " + text, "+++");
+            log.debug("Переход к результатам поиска: {}" + text);
             return apptest.getSearchResultPage().clickToProduct(text);
         }
     }

@@ -1,6 +1,7 @@
 package ru.dns_shop.pages;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -17,6 +18,7 @@ import ru.dns_shop.pages.utils.WarrantyEnum;
  * Класс карточки продукта.
  * @author vadim
  */
+@Slf4j
 public class ProductPage extends BasePage {
     
     @FindBy(xpath = "//select[contains(@class, 'select')]//option")
@@ -34,11 +36,11 @@ public class ProductPage extends BasePage {
      * * '0' - без гарантии;
      * * '1' - гарантия 1 год;
      * * '2' - гарантия 2 года;
-     * @param selectElem
+     * @param warranty
      * @return 
      */
     public ProductPage choiseToWarranty(WarrantyEnum warranty) {
-        print("Выбор гарантии, параметр: " + warranty.geWarranty(), "+++");
+        log.debug("Выбор гарантии, параметр: {}", warranty.geWarranty());
         String warrantyText = "";
         switch(warranty) {
             case WARRANTY_NO :
@@ -56,22 +58,20 @@ public class ProductPage extends BasePage {
         String maskSelectElement = ".//option[@value='%s']";
         String selectElementXPath = String.format(maskSelectElement, warrantyText);
         WebElement selectElement = getDriver().findElement(By.xpath(selectElementXPath));
-        print("Перед кликом по гарантии", "+++");
         selectElement.click();
-        print("После клика по гарантии", "+++");
         
         return apptest.getProductPage();
     }
 
     public ProductPage savePrice(String name) {
-        print("Сохранение цены: " + name, "+++");
+        log.debug("Сохранение цены: {}", name);
         Product.saveProduct(name, getPrice());
         //shoppingList.put(text, getPrice());
         return apptest.getProductPage();
     }
 
     public ProductPage savePriceToWarranty(String name, WarrantyEnum warranty) {
-        print("Сохранение цены с гарантией: " + name, "+++");
+        log.debug("Сохранение цены с гарантией: {}", name);
         waitChangePriceToProduct();
         //shoppingList.put(text, getPrice());
         Product.saveProduct(name, warranty, getPrice());
@@ -79,12 +79,12 @@ public class ProductPage extends BasePage {
     }
 
     private int getPrice() {
-        print("Парсинг цены", "+++");
+        log.debug("Парсинг цены");
         return Integer.parseInt(thisPrice.getText().replaceAll("[\\D]", ""));
     }
 
     private void waitChangePriceToProduct() {
-        print("Ожидание изменения цены на карточке товара", "+++");
+        log.debug("Ожидание изменения цены на карточке товара");
         // В том случае, если значение выпадающего списка остается по умолчанию
         // и не происходит изменения цены - срабатывает исключение и оно
         // игнорируется
@@ -95,9 +95,13 @@ public class ProductPage extends BasePage {
     }
     
     public ProductPage clickButtonBy() {
-        print("Нажатие кнопки купить", "+++");
+        log.debug("Нажатие кнопки купить");
         WaitManager.getWait().until(ExpectedConditions.elementToBeClickable(buttonBy));
-        buttonBy.click();
+        try {
+            buttonBy.click();
+        } catch (Exception e) {
+            Assertions.fail("Ошибка нажатия кнопки купить", e);
+        }
         
         return apptest.getProductPage();
     }

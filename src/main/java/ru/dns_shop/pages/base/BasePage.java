@@ -20,13 +20,11 @@ public class BasePage {
     protected PageManager apptest = PageManager.getManager();
     protected PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     protected Screenshoter scr = new Screenshoter();
-    protected static long timeOperation;
     /**
      * Метод первоначальной настройки драйвера и параметров запуска
      */
     public BasePage() {
         PageFactory.initElements(getDriver(), this);
-        initTime();
     }
     
     public void fillInputField(WebElement element, String value) {
@@ -63,19 +61,6 @@ public class BasePage {
 
     // Метод перехода к элементам главного меню для доступности в любой части страницы
     public TopMenu getTopMenu() {
-        //scr.takeScreenshot();
         return apptest.getTopMenu();
-    }
-    
-    public static void print(String text, String r) {
-        String mask = "'%s' - '%s' - '%s'";
-        long thisTime = System.currentTimeMillis();
-        String textPrint = String.format(mask, r, text, ((thisTime-timeOperation) + "ms"));
-        timeOperation = thisTime;
-        System.out.println(textPrint);
-    }
-
-    private void initTime() {
-        timeOperation = System.currentTimeMillis();
     }
 }

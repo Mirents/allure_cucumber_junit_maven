@@ -16,7 +16,7 @@ public class FindMenu extends BasePage {
     @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту') and not(contains(@id,'null'))]")
     WebElement inputFind;
     
-    @FindBy(xpath = "//input[contains(@placeholder, 'Поиск по сайту')]/..//span[contains(@class, '_icon_search ui-input-search__icon_presearch')]")
+    @FindBy(xpath = "//nav[@id='header-search']//span[contains(@class,'icon_search')]")
     WebElement buttonFind;
     
     public FindMenu inputTextToFind(String text) {

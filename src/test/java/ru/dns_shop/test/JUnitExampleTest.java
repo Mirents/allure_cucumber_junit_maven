@@ -4,10 +4,10 @@ import org.junit.jupiter.api.*;
 import static ru.dns_shop.pages.utils.WarrantyEnum.WARRANTY_ONE_YEAR;
 import ru.dns_shop.test.base.BaseTest;
 
-public class JUnitTest extends BaseTest {
+public class JUnitExampleTest extends BaseTest {
 
     @Test
-    public void SimpleGetYouthCardTest() {
+    public void WarrantySaveTest() {
         // открыть сайт
         apptest
                 // В главном меню в поиске ввести "6.1" Смартфон Apple iPhone Xr 64 ГБ белый" и нажать поиск

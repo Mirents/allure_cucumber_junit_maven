@@ -1,4 +1,4 @@
-﻿Framework для автоматизированного тетсрования.
+﻿Framework для автоматизированного тестирования.
 
 В настоящий момент реализована поддержка:
 - запуск автоматизированных тестов в различных браузерах:
@@ -18,5 +18,10 @@ https://chromedriver.chromium.org/downloads
 https://github.com/mozilla/geckodriver/releases
 
 Команды запуска тестов:
-mvn -Dtest=RunnerCucumber test - для запуска BDD тестов с помощью Cucumber (с генерацией Allure-отчета)
-mvn -Dtest=JUnitTest test - для запуска тестов через раннер JUnit (без генерации Allure-отчета)
+mvn -Dtest=RunnerCucumber test - для запуска BDD тестов с помощью Cucumber
+
+Примеры реализации методов @BeforeAll и @AfterAll для главного класса запуса тестов:
+https://metamorphant.de/blog/posts/2020-03-10-beforeall-afterall-cucumber-jvm-junit/
+
+Настройки Cucumber и Junit5:
+https://github.com/cucumber/cucumber-jvm/tree/main/junit-platform-engine

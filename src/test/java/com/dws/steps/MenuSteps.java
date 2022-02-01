@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MenuSteps extends BaseSteps {
+    
     @И("^в левом меню нажать \"([^\"]*)\"$")
     public void clickToLeftMenuStep(String text) {
-        log.info("В левом меню нажать на '{}'", text);
         apptest
                 .getMenuToPage()
                 .clickLeftMenu(text);
@@ -21,7 +21,7 @@ public class MenuSteps extends BaseSteps {
                 .clickTopSubMenu(subCategories);
     }
     
-    @И("^в верхнем меню проверить соответствие количества товаров в корзине$")
+    @И("^в верхнем меню проверить соответствие количества товаров добавленных в корзину$")
     public void assertCartQuanity() {
         apptest
                 .getMenuToPage()
@@ -33,10 +33,5 @@ public class MenuSteps extends BaseSteps {
         apptest
                 .getMenuToPage()
                 .goToCart();
-    }
-    
-    @И("^в верхнем меню нажать кнопку согласия выбора города$")
-    public void confirmToThisCityStep() {
-        log.info("confirmToThisCityStep");
     }
 }

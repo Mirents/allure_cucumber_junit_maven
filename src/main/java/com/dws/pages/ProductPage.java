@@ -29,13 +29,14 @@ public class ProductPage extends PageBase {
     @FindBy(xpath = "//span[@itemprop='price']")
     private WebElement labelProductPrice;
         
-    public ProductPage() {
+    public ProductPage saveToStorageThisProduct() {
         String labelPrice = labelProductPrice.getText().replaceAll("[^\\d.]", "");
         float price = Float.parseFloat(labelPrice);
         String labelQuantity = inputQuanity.getAttribute("value").replaceAll("[^\\d.]", "");
         int quantity = Integer.parseInt(labelQuantity);
         getCartHelper().addProduct(new ProductHelper(labelProductName.getText(),
                 price, quantity));
+        return this;
     }
     
     public ProductPage assertBarNotificationColor(String color) {
@@ -64,9 +65,14 @@ public class ProductPage extends PageBase {
         return this;
     }
     
-    public ProductPage inputQuanityEnterNumber(int number) {
-        inputQuanity.sendKeys(Integer.toString(number));
-        getCartHelper().getProductByName(labelProductName.getText()).setQuantity(number);
+    public ProductPage inputQuanityEnterNumber(String number) {
+        inputQuanity.sendKeys(number);
+        return this;
+    }
+    
+    public ProductPage saveToThisProductQuanityInStorage(String number) {
+        getCartHelper().getProductByName(labelProductName.getText())
+                .setQuantity(Integer.parseInt(number));
         return this;
     }
     

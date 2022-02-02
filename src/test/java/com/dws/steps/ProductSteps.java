@@ -28,7 +28,7 @@ public class ProductSteps extends BaseSteps {
     }
     
     @И("^нажать кнопку добавления товара в корзину$")
-    public void clickButtonAddToCartStep(String text) {
+    public void clickButtonAddToCartStep() {
         apptest
                 .getProductPage()
                 .clickButtonAddToCart();
@@ -47,14 +47,14 @@ public class ProductSteps extends BaseSteps {
                 .getProductPage()
                 .inputQuanityEnterNumber(number);
     }
-    
-    @И("^установить в хранилище значение колиества данного товара \"([^\"]*)\"$")
+
+    @И("^установить в хранилище значение количества данного товара \"([^\"]*)\"$")
     public void saveToThisProductQuanityInStorageStep(String number) {
         apptest
                 .getProductPage()
                 .saveToThisProductQuanityInStorage(number);
     }
-    
+
     @И("^очистить поле количества товара$")
     public void inputQuanityClearStep() {
         apptest

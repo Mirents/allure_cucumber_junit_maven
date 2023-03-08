@@ -2,7 +2,7 @@
 
 ##### Applied technology
 
-* Language: Java 1.8
+* Language: Java 11
 * Build Automation Tool: Maven
 * Test Frameworks: JUnit 5
 * BDD Test Frameworks: Cucumber

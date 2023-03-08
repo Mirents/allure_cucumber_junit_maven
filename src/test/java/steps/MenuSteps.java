@@ -1,4 +1,4 @@
-package com.dws.steps;
+package steps;
 
 import io.cucumber.java.ru.И;
 import lombok.extern.slf4j.Slf4j;

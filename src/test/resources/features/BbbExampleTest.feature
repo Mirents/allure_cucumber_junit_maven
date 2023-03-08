@@ -1,6 +1,9 @@
 # language: ru
 
-@example
+#mvn clean test "-Dgroups=(run1|run2)&!notRun"
+#mvn clean test "-Dcucumber.filter.tags=(@run1 or @run2) and not @notRun"
+
+@example1
 Функция: Проверка соответствия выбора гарантии
 
   Сценарий: Проверка соответствия цены и количества товара в корзину

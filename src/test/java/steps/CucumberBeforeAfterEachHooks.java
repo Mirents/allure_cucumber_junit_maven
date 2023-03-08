@@ -1,16 +1,17 @@
-package com.dws.hooks;
+package steps;
 
+import com.dws.managers.InitManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import com.dws.managers.InitManager;
 import lombok.extern.slf4j.Slf4j;
+
 /**
  * Методы, выполняемые перед стартом каждого сценария и его завершением.
  * В одном future-файле может быть несколько сценариев, данные методы выполняться
  * для каждого.
  */
 @Slf4j
-public class CucumberHooks {
+public class CucumberBeforeAfterEachHooks {
     @Before
     public void beforeEach() {
         log.info("Запуск установки тестового окружения перед стартом сценария");

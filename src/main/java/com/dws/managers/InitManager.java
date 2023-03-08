@@ -39,9 +39,9 @@ public class InitManager {
     
     public static void openBrowser() {
         try {
-            String app_URL = getPropertiesManager().getProperty(APP_URL);
-            LOGGER.debug("Site opening: {}", app_URL);
-            getDriver().get(app_URL);
+            String appUrl = getPropertiesManager().getProperty(APP_URL);
+            LOGGER.debug("Site opening: {}", appUrl);
+            getDriver().get(appUrl);
         } catch(NullPointerException ex) {
             String message = "Webdriver not initialized";
             LOGGER.error(message);

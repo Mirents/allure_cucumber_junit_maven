@@ -1,4 +1,4 @@
-package com.dws.steps;
+package steps;
 
 import com.dws.managers.PageManager;
 

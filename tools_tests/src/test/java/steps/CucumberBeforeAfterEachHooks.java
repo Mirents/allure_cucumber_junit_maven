@@ -1,6 +1,6 @@
 package steps;
 
-import com.dws.managers.InitManager;
+import io.github.mirents.managers.InitManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import lombok.extern.slf4j.Slf4j;

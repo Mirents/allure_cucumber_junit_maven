@@ -1,11 +1,15 @@
-package com.dws.pages.base;
+package io.github.mirents.pages.base;
 
-import com.dws.helper.CartHelper;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import io.github.mirents.managers.DriverManager;
+import io.github.mirents.managers.PropertiesManager;
+import io.github.mirents.managers.WaitManager;
+import io.github.mirents.pages.utils.ProperitesConstant;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,25 +18,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import static com.dws.managers.DriverManager.getDriver;
-import static com.dws.managers.PropertiesManager.getPropertiesManager;
-import static com.dws.managers.WaitManager.getWaitManager;
-import static com.dws.pages.utils.ProperitesConstant.DRIVER_IMPLICITY_WAIT;
 
 public class PageBase {
     protected static final Logger LOGGER = LogManager.getLogger(PageBase.class);
-    protected Actions action = new Actions(getDriver());
-    protected CartHelper cartHelper;
+    protected Actions action = new Actions(DriverManager.getDriver());
     
     public PageBase() {
-        PageFactory.initElements(getDriver(), this);
+        PageFactory.initElements(DriverManager.getDriver(), this);
     }
     
     public <T extends PageBase> T findBrokenLinks() {
-        List<WebElement> links = getDriver().findElements(By.tagName("a"));
+        List<WebElement> links = DriverManager.getDriver().findElements(By.tagName("a"));
  
         if(links.size() > 0) {
             for(int i=0;i<links.size();i++)
@@ -46,7 +44,7 @@ public class PageBase {
     }
 
     public <T extends PageBase> T findBrokenImage() {
-        List<WebElement> images = getDriver().findElements(By.tagName("img"));
+        List<WebElement> images = DriverManager.getDriver().findElements(By.tagName("img"));
 
         if(images.size() > 0) {
             for(int index=0;index<images.size();index++)
@@ -90,21 +88,21 @@ public class PageBase {
     }
     
     private boolean execScript(String script, WebElement element) {
-        return (Boolean) ((JavascriptExecutor) getDriver())
+        return (Boolean) ((JavascriptExecutor) DriverManager.getDriver())
                         .executeScript(script, element);
     }
     
     public boolean isElementExist(By by) {
         boolean flag = false;
         try {
-            getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-            getDriver().findElement(by);
+            DriverManager.getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            DriverManager.getDriver().findElement(by);
             flag = true;
         } catch (NoSuchElementException ignore) {}
         finally {
-            getDriver().manage().timeouts().implicitlyWait(
-                    Integer.parseInt(getPropertiesManager()
-                            .getProperty(DRIVER_IMPLICITY_WAIT)), TimeUnit.SECONDS);
+            DriverManager.getDriver().manage().timeouts().implicitlyWait(
+                    Integer.parseInt(PropertiesManager.getPropertiesManager()
+                            .getProperty(ProperitesConstant.DRIVER_IMPLICITY_WAIT)), TimeUnit.SECONDS);
         }
         return flag;
     }
@@ -122,7 +120,7 @@ public class PageBase {
     protected WebElement getElemFromListToName(List<WebElement> list, String name) {
         for (WebElement element: list) {
             if (element.getText().equalsIgnoreCase(name)) {
-                getWaitManager().until(ExpectedConditions.visibilityOf(element));
+                WaitManager.getWaitManager().until(ExpectedConditions.visibilityOf(element));
                 return element;
             }
         }
@@ -135,7 +133,7 @@ public class PageBase {
     
     public WebElement getElemFromListToBy(List<WebElement> list, By by) {
         for (WebElement element: list) {
-            getWaitManager().until(ExpectedConditions.visibilityOf(element));
+            WaitManager.getWaitManager().until(ExpectedConditions.visibilityOf(element));
             WebElement findElement = element.findElement(by);
             return findElement;
         }

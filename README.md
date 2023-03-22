@@ -12,9 +12,11 @@
 
 ##### Run tests
 
-> mvn clean test "-Dgroups=(run1|run2)&!notRun"
+> mvn -pl ui_example clean test "-Dgroups=(run1|run2)&!notRun"
 
-> mvn clean test "-Dcucumber.filter.tags=(@run1 or @run2) and not @notRun"
+> mvn -pl ui_example clean test "-Dcucumber.filter.tags=(@run1 or @run2) and not @notRun"
+
+Где '-pl ui_example' - имя запускаемого модуля.
 
 ##### Features
 

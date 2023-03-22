@@ -1,8 +1,9 @@
-package com.dws.managers;
+package io.github.mirents.managers;
 
-import static com.dws.managers.PropertiesManager.getPropertiesManager;
-import static com.dws.pages.utils.ProperitesConstant.*;
-import com.dws.pages.utils.WebDriverListener;
+import static io.github.mirents.managers.PropertiesManager.getPropertiesManager;
+
+import io.github.mirents.pages.utils.ProperitesConstant;
+import io.github.mirents.pages.utils.WebDriverListener;
 import org.apache.commons.exec.OS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,12 +21,12 @@ public class DriverManager {
     
     private DriverManager() {
         if(getPropertiesManager()
-                .getProperty(HIGLILIGHTS_ELEMENTS_ENABLE).equals("yes")) {
-            String color = getPropertiesManager().getProperty(HIGLILIGHTS_ELEMENTS_COLOR);
+                .getProperty(ProperitesConstant.HIGLILIGHTS_ELEMENTS_ENABLE).equals("yes")) {
+            String color = getPropertiesManager().getProperty(ProperitesConstant.HIGLILIGHTS_ELEMENTS_COLOR);
             int interval = Integer.parseInt(getPropertiesManager()
-                    .getProperty(HIGLILIGHTS_ELEMENTS_INTERVAL));
+                    .getProperty(ProperitesConstant.HIGLILIGHTS_ELEMENTS_INTERVAL));
             int count = Integer.parseInt(getPropertiesManager()
-                    .getProperty(HIGLILIGHTS_ELEMENTS_COUNT));
+                    .getProperty(ProperitesConstant.HIGLILIGHTS_ELEMENTS_COUNT));
             eventListener = new WebDriverListener(color, interval, count);
         } else {
             eventListener = new WebDriverListener("#000000", 0, 0);
@@ -56,10 +57,10 @@ public class DriverManager {
     private void initDriver() {
         if (OS.isFamilyWindows()) {
             LOGGER.debug("Initializing the Windows Web Driver");
-            initDriverAnyOsFamily(PATH_WINDOWS, PATH_DRIVER_CHROME_WINDOWS);
+            initDriverAnyOsFamily(ProperitesConstant.PATH_WINDOWS, ProperitesConstant.PATH_DRIVER_CHROME_WINDOWS);
         } else if (OS.isFamilyUnix()) {
             LOGGER.debug("Initializing the Unix Web Driver");
-            initDriverAnyOsFamily(PATH_UNIX, PATH_DRIVER_CHROME_UNIX);
+            initDriverAnyOsFamily(ProperitesConstant.PATH_UNIX, ProperitesConstant.PATH_DRIVER_CHROME_UNIX);
         } else {
             String message = "Failed to initialize the web driver for this OS";
             LOGGER.error(message);
@@ -104,7 +105,7 @@ public class DriverManager {
     private ChromeOptions getChromeOptions() {
         ChromeOptions result = new ChromeOptions();
         LOGGER.debug("Setting browser options");
-        if(getPropertiesManager().getProperty(BROWSER_IS_HEADLESS).equals("yes")) {
+        if(getPropertiesManager().getProperty(ProperitesConstant.BROWSER_IS_HEADLESS).equals("yes")) {
             LOGGER.debug("Enabling Browser Option: BROWSER_IS_HEADLESS");
             result.setHeadless(true);
         }
@@ -114,12 +115,12 @@ public class DriverManager {
     
     private void setGeneralStartOptions() {
         if(getPropertiesManager()
-                .getProperty(BROWSER_DELETE_ALL_COOKIES_BEFORE_START_TESTS)
+                .getProperty(ProperitesConstant.BROWSER_DELETE_ALL_COOKIES_BEFORE_START_TESTS)
                 .equals("yes")) {
             LOGGER.debug("Clearing cookies before starting");
             getDriver().manage().deleteAllCookies();
         }
-        if(getPropertiesManager().getProperty(BROWSER_MAXIMIZE_WINDOW).equals("yes")) {
+        if(getPropertiesManager().getProperty(ProperitesConstant.BROWSER_MAXIMIZE_WINDOW).equals("yes")) {
             LOGGER.debug("Maximize the browser window to full screen");
             getDriver().manage().window().maximize();
         }

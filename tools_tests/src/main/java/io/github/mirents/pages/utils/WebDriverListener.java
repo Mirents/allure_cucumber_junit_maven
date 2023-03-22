@@ -1,6 +1,6 @@
-package com.dws.pages.utils;
+package io.github.mirents.pages.utils;
 
-import com.dws.managers.DriverManager;
+import io.github.mirents.managers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;

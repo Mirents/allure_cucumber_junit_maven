@@ -1,10 +1,10 @@
-package com.dws.managers;
+package io.github.mirents.managers;
 
 import java.util.concurrent.TimeUnit;
-import static com.dws.managers.DriverManager.*;
-import static com.dws.managers.PageManager.getPageManager;
-import static com.dws.managers.PropertiesManager.getPropertiesManager;
-import static com.dws.pages.utils.ProperitesConstant.*;
+import static io.github.mirents.managers.DriverManager.*;
+import static io.github.mirents.managers.PropertiesManager.getPropertiesManager;
+
+import io.github.mirents.pages.utils.ProperitesConstant;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
@@ -21,12 +21,12 @@ public class InitManager {
     public static void initFramework() {
         LOGGER.info("Start init framework");
         int implicityWait = Integer.parseInt(getPropertiesManager()
-                .getProperty(DRIVER_IMPLICITY_WAIT));
+                .getProperty(ProperitesConstant.DRIVER_IMPLICITY_WAIT));
         LOGGER.debug("Setting implicityWait timeout to {} sec.", implicityWait);
         getDriver().manage().timeouts().implicitlyWait(implicityWait, TimeUnit.SECONDS);
         
         int pageLoadTimeout = Integer.parseInt(getPropertiesManager()
-                .getProperty(DRIVER_PAGE_LOAD_TIMEOUT));
+                .getProperty(ProperitesConstant.DRIVER_PAGE_LOAD_TIMEOUT));
         LOGGER.debug("Setting the pageLoadTimeout timeout to {} sec.", pageLoadTimeout);
         getDriver().manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS);
     }
@@ -34,12 +34,12 @@ public class InitManager {
     public static void quitFramework() {
         quitDriver();
         LOGGER.info("Clearing the class store of web pages");
-        getPageManager().clearMapPage();
+        PageManager.getPageManager().clearMapPage();
     }
     
     public static void openBrowser() {
         try {
-            String appUrl = getPropertiesManager().getProperty(APP_URL);
+            String appUrl = getPropertiesManager().getProperty(ProperitesConstant.APP_URL);
             LOGGER.debug("Site opening: {}", appUrl);
             getDriver().get(appUrl);
         } catch(NullPointerException ex) {

@@ -1,8 +1,7 @@
-package com.dws.managers;
+package io.github.mirents.managers;
 
+import io.github.mirents.pages.utils.ProperitesConstant;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static com.dws.managers.DriverManager.getDriver;
-import static com.dws.pages.utils.ProperitesConstant.*;
 
 /**
  * Класс ожидания.
@@ -14,16 +13,16 @@ public class WaitManager {
     PropertiesManager propertiesManager = PropertiesManager.getPropertiesManager();
     
     private WaitManager() {
-        long sleepInMillis = Integer.parseInt(propertiesManager.getProperty(WAIT_SLEEPINMILLIS));
+        long sleepInMillis = Integer.parseInt(propertiesManager.getProperty(ProperitesConstant.WAIT_SLEEPINMILLIS));
         if(sleepInMillis == 0) {
             sleepInMillis = 1000;
         }
-        long timeoutInSeconds = Integer.parseInt(propertiesManager.getProperty(WAIT_TIMEOUTINSECONDS));
+        long timeoutInSeconds = Integer.parseInt(propertiesManager.getProperty(ProperitesConstant.WAIT_TIMEOUTINSECONDS));
         if(timeoutInSeconds == 0) {
             timeoutInSeconds = 5;
         }
 
-        wait = new WebDriverWait(getDriver(), timeoutInSeconds, sleepInMillis);
+        wait = new WebDriverWait(DriverManager.getDriver(), timeoutInSeconds, sleepInMillis);
     }
     
     public static WebDriverWait getWaitManager() {

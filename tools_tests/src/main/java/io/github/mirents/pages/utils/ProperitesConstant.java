@@ -1,4 +1,4 @@
-package com.dws.pages.utils;
+package io.github.mirents.pages.utils;
 
 /**
  * Класс констант, используемых в описании работы тестов.

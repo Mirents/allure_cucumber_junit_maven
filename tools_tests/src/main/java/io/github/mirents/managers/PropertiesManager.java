@@ -1,4 +1,4 @@
-package com.dws.managers;
+package io.github.mirents.managers;
 
 import java.io.File;
 import java.io.FileInputStream;
